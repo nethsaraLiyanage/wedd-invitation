@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Save the Date — Shasheeka & Nethsara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="pill">Save the date</p>
+        <h1 class="names">
+          <span class="name-part">SHASHEEKA</span>
+          <span class="ampersand">&#38;</span>
+          <span class="name-part">NETHSARA</span>
+        </h1>
+        <p class="date">June 11, 2026</p>
+      </header>
+
+      <section class="card-wrap" aria-label="Invitation card">
+        <div class="card-stage" id="cardStage">
+          <div class="card-reveal" id="cardReveal" aria-hidden="true">
+            <p class="reveal-title">Opening invitation...</p>
+          </div>
+
+          <div class="card-door card-door--left">
+            <div class="door-inner">
+              <span class="door-side-text" aria-hidden="true"
+                >SHASHEEKA &amp; NETHSARA</span
+              >
+              <div class="corner corner--tl"></div>
+              <div class="corner corner--bl"></div>
+            </div>
+          </div>
+          <div class="card-door card-door--right">
+            <div class="door-inner">
+              <div class="corner corner--tr"></div>
+              <div class="corner corner--br"></div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="seal"
+            id="sealBtn"
+            aria-expanded="false"
+            aria-controls="cardReveal"
+          >
+            <span class="seal-initials">S&amp;N</span>
+            <span class="seal-open">Open</span>
+          </button>
+
+          <p class="tap-hint">Tap seal to open</p>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <button type="button" class="foot-link" id="resetBtn" hidden>
+          Close card
+        </button>
+        <p class="foot-hint" id="footHint">Tap to reveal</p>
+      </footer>
+
+      <section class="invitation-page" id="invitationPage" aria-hidden="true">
+        <button type="button" class="invite-close" id="inviteCloseBtn">Close</button>
+        <div class="invite-bg-initials" aria-hidden="true">S&amp;N</div>
+
+        <div class="invite-hero">
+          <div class="invite-hero__inner">
+            <article class="invite-panel">
+              <div class="invite-panel__body">
+                <div class="invite-top-mark">
+                  <img
+                    class="invite-mandala"
+                    src="assets/mandala-transparent.png"
+                    alt=""
+                    width="120"
+                    height="120"
+                    decoding="async"
+                  />
+                </div>
+                <p class="invite-eyebrow">Please join us</p>
+                <h2 class="invite-names">Shasheeka <span>&amp;</span> Nethsara</h2>
+                <p class="invite-date">11 June 2026</p>
+                <p class="invite-location">5PM Onwards</p>
+              </div>
+            </article>
+          </div>
+          <a
+            class="scroll-continue"
+            href="#invite-details"
+            id="scrollContinueBtn"
+            aria-label="Scroll to wedding details"
+          >
+            <span class="scroll-continue__label">Begin</span>
+            <span class="scroll-continue__line" aria-hidden="true">
+              <span class="scroll-continue__line-fill"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="invite-blue-drape" id="invite-details">
+        <section class="union-section" aria-labelledby="union-lead">
+          <div class="union-section__deco" aria-hidden="true">
+            <img
+              class="union-section__mandala union-section__mandala--left"
+              src="assets/mandala-transparent.png"
+              alt=""
+              width="400"
+              height="400"
+              decoding="async"
+            />
+            <img
+              class="union-section__mandala union-section__mandala--right"
+              src="assets/mandala-transparent.png"
+              alt=""
+              width="400"
+              height="400"
+              decoding="async"
+            />
+          </div>
+          <div class="union-section__inner">
+            <p class="union-section__lead" id="union-lead">
+              You are joyfully invited to celebrate the union of
+            </p>
+            <div class="union-section__photo">
+              <img
+                src="assets/couple.jpg"
+                alt="Shasheeka and Nethsara"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="parents-section" aria-labelledby="parents-heading">
+          <h2 class="visually-hidden" id="parents-heading">Parents</h2>
+          <div class="parents-section__inner">
+            <div class="parents-cards-row">
+              <article class="parents-card parents-card--bride">
+                <div class="parents-card__body">
+                  <p class="parents-card__label">Beloved daughter of</p>
+                  <p class="parents-card__parents">
+                    Mr. Sunil Gamage & Mrs. Yasantha Hettiarachchi
+                  </p>
+                  <p class="parents-card__name">Shasheeka</p>
+                </div>
+              </article>
+              <div class="parents-cards-row__mid" aria-hidden="true">
+                <span class="parents-section__line"></span>
+                <span class="parents-section__amp">&amp;</span>
+              </div>
+              <article class="parents-card parents-card--groom">
+                <div class="parents-card__body">
+                  <p class="parents-card__label">Beloved son of</p>
+                  <p class="parents-card__parents">
+                    Mr. Kamal Liyanage & Mrs. Madhuri Wijayaweera
+                  </p>
+                  <p class="parents-card__name">Nethsara</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="when-section" aria-labelledby="when-heading">
+          <h2 class="visually-hidden" id="when-heading">Wedding date and time</h2>
+          <div class="when-section__deco" aria-hidden="true">
+            <img
+              class="when-section__mandala when-section__mandala--left"
+              src="assets/mandala-transparent.png"
+              alt=""
+              width="600"
+              height="600"
+              decoding="async"
+            />
+            <img
+              class="when-section__mandala when-section__mandala--right"
+              src="assets/mandala-transparent.png"
+              alt=""
+              width="600"
+              height="600"
+              decoding="async"
+            />
+          </div>
+          <div class="when-section__inner">
+            <div class="when-grid">
+              <div class="when-col">
+                <div class="when-col__icon" aria-hidden="true">
+                  <svg
+                    class="when-icon-svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.35"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3.5" y="5" width="17" height="15" rx="2" />
+                    <path d="M8 3v4M16 3v4M3.5 10h17" />
+                  </svg>
+                </div>
+                <p class="when-col__label">The date</p>
+                <p class="when-col__main">Thursday, 11 June</p>
+                <p class="when-col__sub">2026</p>
+              </div>
+              <div class="when-divider" aria-hidden="true"></div>
+              <div class="when-col">
+                <div class="when-col__icon" aria-hidden="true">
+                  <svg
+                    class="when-icon-svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.35"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="7.5" />
+                    <path d="M12 8v4l3 2" />
+                  </svg>
+                </div>
+                <p class="when-col__label">The time</p>
+                <p class="when-col__main">5:00 PM</p>
+                <p class="when-col__sub">Onwards</p>
+              </div>
+            </div>
+            <p class="when-section__pill">
+              <span class="when-section__pill-star" aria-hidden="true">✦</span>
+              Poruwa ceremony at 05:12 PM
+              <span class="when-section__pill-star" aria-hidden="true">✦</span>
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="countdown-section"
+          id="countdown"
+          aria-labelledby="countdown-heading"
+        >
+          <div class="countdown-section__watermark" aria-hidden="true">forever</div>
+          <div class="countdown-section__inner">
+            <h2 class="countdown-section__title" id="countdown-heading">
+              <span class="countdown-section__title-serif">Wait for the</span>
+              <span class="countdown-section__title-script">magic</span>
+            </h2>
+            <p class="countdown-section__pill">
+              <span aria-hidden="true">•</span> Counting down
+              <span aria-hidden="true">•</span>
+            </p>
+            <div
+              class="countdown-section__grid"
+              role="timer"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label="Time until 11 June 2026"
+            >
+              <div class="countdown-box">
+                <span class="countdown-box__value" id="cd-days">—</span>
+                <span class="countdown-box__label">Days</span>
+                <span class="countdown-box__diamond" aria-hidden="true"></span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-box__value" id="cd-hours">—</span>
+                <span class="countdown-box__label">Hours</span>
+                <span class="countdown-box__diamond" aria-hidden="true"></span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-box__value" id="cd-minutes">—</span>
+                <span class="countdown-box__label">Minutes</span>
+                <span class="countdown-box__diamond" aria-hidden="true"></span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-box__value" id="cd-seconds">—</span>
+                <span class="countdown-box__label">Seconds</span>
+                <span class="countdown-box__diamond" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="venue-section" id="venue" aria-labelledby="venue-heading">
+          <div class="venue-section__inner">
+            <div class="venue-section__copy">
+              <p class="venue-kicker">
+                <span class="venue-kicker__line" aria-hidden="true"></span>
+                <span class="venue-kicker__text">The venue</span>
+              </p>
+              <h2 class="venue-title" id="venue-heading">Hotel Sundream</h2>
+              <p class="venue-location">
+                <svg
+                  class="venue-location__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.35"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"
+                  />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span>Hikkaduwa, Sri Lanka</span>
+              </p>
+              <p class="venue-desc">
+                We can’t wait to celebrate together in an evening filled with
+                love, music, and unforgettable memories.
+              </p>
+              <a
+                class="venue-cta"
+                href="https://maps.app.goo.gl/BSUfQZD2qbbHhfmLA?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  class="venue-cta__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.35"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"
+                  />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                Get directions
+              </a>
+            </div>
+
+            <div class="venue-section__map">
+              <div class="venue-map-frame">
+                <div class="venue-map-frame__clip">
+                  <iframe
+                    class="venue-map-frame__embed"
+                    title="Map of Hotel Sundream"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Hotel+Sundream+Hikkaduwa+Sri+Lanka&amp;z=15&amp;output=embed"
+                  ></iframe>
+                  <a
+                    class="venue-map-frame__link"
+                    href="https://maps.app.goo.gl/BSUfQZD2qbbHhfmLA?g_st=iw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on map
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rsvp-section" id="rsvp" aria-labelledby="rsvp-heading">
+          <div class="rsvp-section__inner">
+            <p class="rsvp-eyebrow">Will you join us?</p>
+            <h2 class="rsvp-title" id="rsvp-heading">RSVP</h2>
+            <div class="rsvp-rule" aria-hidden="true">
+              <span class="rsvp-rule__line"></span>
+              <span class="rsvp-rule__diamond"></span>
+              <span class="rsvp-rule__line"></span>
+            </div>
+            <p class="rsvp-copy">
+              We would be absolutely thrilled to celebrate with you. Kindly
+              respond by the end of August.
+            </p>
+            <!-- Replace href and displayed numbers with your real mobile numbers -->
+            <ul class="rsvp-phones">
+              <li class="rsvp-phones__item">
+                <span class="rsvp-phone__name">Shasheeka</span>
+                <a class="rsvp-phone" href="tel:+94713541753">+94 71 354 1753</a>
+              </li>
+              <li class="rsvp-phones__item">
+                <span class="rsvp-phone__name">Nethsara</span>
+                <a class="rsvp-phone" href="tel:+94771531426">+94 77 153 1426</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="closing-section" aria-labelledby="closing-heading">
+          <div class="closing-section__watermark" aria-hidden="true">Thank You</div>
+          <div class="closing-section__inner">
+            <p class="closing-pill">With love</p>
+            <h2 class="closing-names" id="closing-heading">
+              Shasheeka&nbsp;<span class="closing-names__amp">&amp;</span>&nbsp;Nethsara
+            </h2>
+            <div class="closing-mandala" aria-hidden="true">
+              <img
+                class="closing-mandala__img"
+                src="assets/mandala-transparent.png"
+                alt=""
+                width="200"
+                height="200"
+                decoding="async"
+              />
+            </div>
+            <footer class="site-footer">
+              <p class="site-footer__rights">
+                © 2026 Shasheeka &amp; Nethsara · All rights reserved
+              </p>
+              <!-- <p class="site-footer__contact">
+                <span class="site-footer__muted">Contact</span>
+                <span class="site-footer__sep site-footer__muted" aria-hidden="true">·</span>
+                <span class="site-footer__strong">Shasheeka</span>
+                <span class="site-footer__muted"> — </span>
+                <a class="site-footer__link" href="tel:+94713541753">+94 71 354 1753</a>
+                <span class="site-footer__muted"> · </span>
+                <span class="site-footer__strong">Nethsara</span>
+                <span class="site-footer__muted"> — </span>
+                <a class="site-footer__link" href="tel:+94771531426">+94 77 153 1426</a>
+              </p> -->
+            </footer>
+          </div>
+        </section>
+        </div>
+      </section>
+    </main>
+    <script src="js/app.js"></script>
+  </body>
+</html>
