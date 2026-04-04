@@ -9,6 +9,65 @@
   const scrollContinueBtn = document.getElementById("scrollContinueBtn");
   const inviteDetails = document.getElementById("invite-details");
 
+  function setupScrollReveals() {
+    const sections = document.querySelectorAll(".reveal-on-scroll");
+    if (!sections.length) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      sections.forEach(function (el) {
+        el.classList.add("is-inview");
+      });
+      return;
+    }
+
+    document.documentElement.classList.add("motion-reveals");
+
+    function markInView(el) {
+      el.classList.add("is-inview");
+    }
+
+    function isRoughlyVisible(el) {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.width > 0 && r.height > 0 && r.top < vh * 0.92 && r.bottom > 0;
+    }
+
+    const io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            markInView(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px 0px -7% 0px", threshold: 0.06 }
+    );
+
+    sections.forEach(function (el) {
+      if (isRoughlyVisible(el)) {
+        markInView(el);
+      } else {
+        io.observe(el);
+      }
+    });
+
+    return io;
+  }
+
+  let revealObserver = setupScrollReveals();
+
+  function refreshRevealSections() {
+    document.querySelectorAll(".reveal-on-scroll:not(.is-inview)").forEach(function (el) {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (r.width > 0 && r.height > 0 && r.top < vh * 0.88 && r.bottom > 40) {
+        el.classList.add("is-inview");
+        if (revealObserver) revealObserver.unobserve(el);
+      }
+    });
+  }
+
   if (!stage || !seal) return;
 
   function openCard() {
@@ -22,6 +81,9 @@
     window.setTimeout(function () {
       document.body.classList.add("show-invite-page");
       window.scrollTo({ top: 0, behavior: "smooth" });
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(refreshRevealSections);
+      });
     }, 900);
   }
 

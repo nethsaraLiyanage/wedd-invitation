@@ -1937,65 +1937,162 @@ body.show-invite-page .invitation-page {
 
 .corner {
   position: absolute;
-  width: 64px;
-  height: 64px;
+  width: clamp(88px, 27%, 118px);
+  height: clamp(88px, 27%, 118px);
   pointer-events: none;
-  opacity: 0.35;
-  background: repeating-conic-gradient(
-    from 0deg at 50% 50%,
-    transparent 0deg 6deg,
-    rgba(255, 255, 255, 0.1) 6deg 7deg,
-    transparent 7deg 12deg
-  );
-  border-radius: 2px;
+}
+
+/* Radial mask from each card corner: fades the PNG’s rectangular bounds so only a curved, organic edge shows */
+.corner__mandala {
+  position: absolute;
+  display: block;
+  width: clamp(168px, 48vmin, 240px);
+  height: auto;
+  max-width: none;
+  opacity: 1.5;
+  mix-blend-mode: screen;
+  filter: brightness(1.12) saturate(1.05);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 .corner--tl {
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 0;
+}
+
+.corner--tl .corner__mandala {
+  top: 0;
+  left: 0;
+  transform: translate(-45%, -45%);
+  -webkit-mask-image: radial-gradient(
+    circle farthest-corner at 0 0,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
+  );
   mask-image: radial-gradient(
-    ellipse 100% 100% at 0 0,
-    black 55%,
-    transparent 56%
+    circle farthest-corner at 0 0,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
   );
 }
 
 .corner--tr {
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
+}
+
+.corner--tr .corner__mandala {
+  top: 0;
+  right: 0;
+  left: auto;
+  transform: translate(45%, -45%);
+  -webkit-mask-image: radial-gradient(
+    circle farthest-corner at 100% 0,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
+  );
   mask-image: radial-gradient(
-    ellipse 100% 100% at 100% 0,
-    black 55%,
-    transparent 56%
+    circle farthest-corner at 100% 0,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
   );
 }
 
 .corner--bl {
-  bottom: 10px;
-  left: 10px;
+  bottom: 0;
+  left: 0;
+}
+
+.corner--bl .corner__mandala {
+  bottom: 0;
+  left: 0;
+  top: auto;
+  transform: translate(-45%, 45%);
+  -webkit-mask-image: radial-gradient(
+    circle farthest-corner at 0 100%,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
+  );
   mask-image: radial-gradient(
-    ellipse 100% 100% at 0 100%,
-    black 55%,
-    transparent 56%
+    circle farthest-corner at 0 100%,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
   );
 }
 
 .corner--br {
-  bottom: 10px;
-  right: 10px;
+  bottom: 0;
+  right: 0;
+}
+
+.corner--br .corner__mandala {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  left: auto;
+  transform: translate(45%, 45%);
+  -webkit-mask-image: radial-gradient(
+    circle farthest-corner at 100% 100%,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
+  );
   mask-image: radial-gradient(
-    ellipse 100% 100% at 100% 100%,
-    black 55%,
-    transparent 56%
+    circle farthest-corner at 100% 100%,
+    #000 0%,
+    #000 36%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 76%
   );
 }
 
-.seal {
+.card-stage__center {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4.45rem;
+  pointer-events: none;
+}
+
+.card-stage__center .seal {
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+
+.seal {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  z-index: 1;
   width: 88px;
   height: 88px;
   border-radius: 50%;
@@ -2025,7 +2122,7 @@ body.show-invite-page .invitation-page {
 
 @media (hover: hover) and (pointer: fine) {
   .card-stage:not(.is-open):hover .seal {
-    transform: translate(-50%, -50%) scale(1.055);
+    transform: scale(1.055);
     box-shadow:
       0 10px 36px rgba(11, 21, 40, 0.28),
       0 0 0 1px rgba(255, 255, 255, 0.98),
@@ -2035,7 +2132,7 @@ body.show-invite-page .invitation-page {
   }
 
   .card-stage:not(.is-open):hover .seal:hover {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: scale(1.08);
     box-shadow:
       0 12px 40px rgba(11, 21, 40, 0.3),
       0 0 0 1px rgba(255, 255, 255, 1),
@@ -2046,7 +2143,7 @@ body.show-invite-page .invitation-page {
 }
 
 .seal:hover {
-  transform: translate(-50%, -50%) scale(1.04);
+  transform: scale(1.04);
   box-shadow:
     0 8px 32px var(--shadow),
     0 0 0 1px rgba(255, 255, 255, 0.95),
@@ -2054,7 +2151,7 @@ body.show-invite-page .invitation-page {
 }
 
 .seal:active {
-  transform: translate(-50%, -50%) scale(0.98);
+  transform: scale(0.98);
 }
 
 .seal-initials {
@@ -2074,12 +2171,9 @@ body.show-invite-page .invitation-page {
 }
 
 .tap-hint {
-  position: absolute;
-  bottom: 14%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  margin: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0.6rem 0 0;
   display: inline-block;
   width: max-content;
   max-width: calc(100% - 1.5rem);
@@ -2111,7 +2205,11 @@ body.show-invite-page .invitation-page {
 .card-stage.is-open .seal {
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%) scale(0.85);
+  transform: scale(0.85);
+}
+
+.card-stage.is-open .card-stage__center {
+  pointer-events: none;
 }
 
 .card-stage.is-open .tap-hint {
@@ -2159,6 +2257,425 @@ body.show-invite-page .invitation-page {
 /* Footer is sibling of card-wrap inside .page — fix selector */
 .page:has(.card-stage.is-open) .foot-hint {
   opacity: 0.35;
+}
+
+/* —— Motion: landing hero, card, invitation, scroll reveals —— */
+@keyframes anim-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes anim-fade-scale {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes anim-seal-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 4px 24px var(--shadow),
+      0 0 0 1px rgba(255, 255, 255, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  50% {
+    box-shadow:
+      0 6px 28px rgba(11, 21, 40, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.95),
+      0 0 20px rgba(245, 230, 232, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  }
+}
+
+@keyframes anim-float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes anim-mandala-sway {
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(2.5deg);
+  }
+}
+
+@keyframes anim-mandala-sway-mirror {
+  0%,
+  100% {
+    transform: translateY(-50%) scaleX(-1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50%) scaleX(-1) rotate(-2.5deg);
+  }
+}
+
+@keyframes anim-shimmer-fill {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes anim-watermark-drift {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    opacity: 0.92;
+    transform: translate(-50%, calc(-50% - 6px));
+  }
+}
+
+body:not(.show-invite-page) .hero .pill {
+  animation: anim-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.05s;
+}
+
+body:not(.show-invite-page) .hero .names .name-part:first-child {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+body:not(.show-invite-page) .hero .names .ampersand {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  animation-delay: 0.42s;
+}
+
+body:not(.show-invite-page) .hero .names .name-part:last-child {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.5s;
+}
+
+body:not(.show-invite-page) .card-wrap {
+  animation: anim-fade-scale 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.35s;
+}
+
+body:not(.show-invite-page) .foot .foot-hint {
+  animation: anim-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.85s;
+}
+
+.card-stage:not(.is-open) .seal {
+  animation: anim-seal-breathe 3.8s ease-in-out infinite;
+}
+
+.card-stage:not(.is-open) .tap-hint {
+  animation: anim-float-soft 2.8s ease-in-out infinite;
+}
+
+.scroll-continue__line-fill {
+  animation: anim-shimmer-fill 2.4s ease-in-out infinite;
+}
+
+body.show-invite-page .invite-close {
+  animation: anim-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.15s;
+}
+
+body.show-invite-page .invite-panel {
+  animation: anim-fade-scale 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+body.show-invite-page .invite-mandala {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+body.show-invite-page .invite-eyebrow {
+  animation: anim-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.38s;
+}
+
+body.show-invite-page .invite-names {
+  animation: anim-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.48s;
+}
+
+body.show-invite-page .invite-date {
+  animation: anim-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.62s;
+}
+
+body.show-invite-page .invite-location {
+  animation: anim-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.72s;
+}
+
+body.show-invite-page .scroll-continue {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.88s;
+}
+
+.countdown-section__watermark {
+  animation: anim-watermark-drift 14s ease-in-out infinite;
+}
+
+.closing-section__watermark {
+  animation: anim-watermark-drift 16s ease-in-out infinite;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .union-section__lead,
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .union-section__photo {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .union-section__lead {
+  animation: anim-fade-up 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.06s;
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .union-section__photo {
+  animation: anim-fade-up 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.22s;
+}
+
+html.motion-reveals .union-section.is-inview .union-section__mandala--left {
+  animation: anim-mandala-sway 18s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+html.motion-reveals .union-section.is-inview .union-section__mandala--right {
+  animation: anim-mandala-sway-mirror 20s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .parents-section__inner {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .parents-section__inner {
+  animation: anim-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals
+  .parents-section.is-inview
+  .parents-cards-row
+  > .parents-card {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html.motion-reveals
+  .parents-section.is-inview
+  .parents-cards-row
+  > .parents-card--bride {
+  animation-delay: 0.12s;
+}
+
+html.motion-reveals
+  .parents-section.is-inview
+  .parents-cards-row
+  > .parents-cards-row__mid {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+html.motion-reveals
+  .parents-section.is-inview
+  .parents-cards-row
+  > .parents-card--groom {
+  animation-delay: 0.44s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .when-section__inner {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .when-section__inner {
+  animation: anim-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals .when-section.is-inview .when-col:nth-child(1) {
+  animation: anim-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+html.motion-reveals .when-section.is-inview .when-divider {
+  animation: anim-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+html.motion-reveals .when-section.is-inview .when-col:nth-child(3) {
+  animation: anim-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.26s;
+}
+
+html.motion-reveals .when-section.is-inview .when-section__pill {
+  animation: anim-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.42s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .countdown-section__inner {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .countdown-section__inner {
+  animation: anim-fade-up 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-section__title {
+  animation: anim-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.06s;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-section__pill {
+  animation: anim-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(1) {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.22s;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(2) {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.32s;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(3) {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.42s;
+}
+
+html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(4) {
+  animation: anim-fade-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.52s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .venue-section__inner {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .venue-section__inner {
+  animation: anim-fade-up 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-section__copy > * {
+  animation: anim-fade-up 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-kicker {
+  animation-delay: 0.05s;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-title {
+  animation-delay: 0.12s;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-location {
+  animation-delay: 0.2s;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-desc {
+  animation-delay: 0.28s;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-cta {
+  animation-delay: 0.36s;
+}
+
+html.motion-reveals .venue-section.is-inview .venue-map-frame {
+  animation: anim-fade-scale 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.2s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .rsvp-section__inner {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .rsvp-section__inner {
+  animation: anim-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-eyebrow {
+  animation: anim-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-title {
+  animation: anim-fade-scale 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.14s;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-rule {
+  animation: anim-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-copy {
+  animation: anim-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.36s;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-phones__item:nth-child(1) {
+  animation: anim-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.46s;
+}
+
+html.motion-reveals .rsvp-section.is-inview .rsvp-phones__item:nth-child(2) {
+  animation: anim-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.56s;
+}
+
+html.motion-reveals .reveal-on-scroll:not(.is-inview) .closing-section__inner {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+html.motion-reveals .reveal-on-scroll.is-inview .closing-section__inner {
+  animation: anim-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.motion-reveals .closing-section.is-inview .closing-pill {
+  animation: anim-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+html.motion-reveals .closing-section.is-inview .closing-names {
+  animation: anim-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+html.motion-reveals .closing-section.is-inview .closing-mandala {
+  animation: anim-fade-scale 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.32s;
+}
+
+html.motion-reveals .closing-section.is-inview .site-footer {
+  animation: anim-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.48s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2218,7 +2735,7 @@ body.show-invite-page .invitation-page {
 
   .card-stage:not(.is-open):hover .seal,
   .card-stage:not(.is-open):hover .seal:hover {
-    transform: translate(-50%, -50%);
+    transform: none;
     box-shadow:
       0 4px 24px var(--shadow),
       0 0 0 1px rgba(255, 255, 255, 0.9),
@@ -2233,5 +2750,103 @@ body.show-invite-page .invitation-page {
 
   .scroll-continue__line {
     animation: none;
+  }
+
+  .scroll-continue__line-fill {
+    animation: none;
+    transform: none;
+  }
+
+  body:not(.show-invite-page) .hero .pill,
+  body:not(.show-invite-page) .hero .names .name-part:first-child,
+  body:not(.show-invite-page) .hero .names .ampersand,
+  body:not(.show-invite-page) .hero .names .name-part:last-child,
+  body:not(.show-invite-page) .card-wrap,
+  body:not(.show-invite-page) .foot .foot-hint {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .card-stage:not(.is-open) .seal {
+    animation: none;
+  }
+
+  .card-stage:not(.is-open) .tap-hint {
+    animation: none;
+    transform: none;
+  }
+
+  body.show-invite-page .invite-close,
+  body.show-invite-page .invite-panel,
+  body.show-invite-page .invite-mandala,
+  body.show-invite-page .invite-eyebrow,
+  body.show-invite-page .invite-names,
+  body.show-invite-page .invite-date,
+  body.show-invite-page .invite-location,
+  body.show-invite-page .scroll-continue {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .countdown-section__watermark,
+  .closing-section__watermark {
+    animation: none;
+    transform: translate(-50%, -50%);
+  }
+
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .union-section__lead,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .union-section__photo,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .parents-section__inner,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .when-section__inner,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .countdown-section__inner,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .venue-section__inner,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .rsvp-section__inner,
+  html.motion-reveals .reveal-on-scroll:not(.is-inview) .closing-section__inner {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.motion-reveals .union-section.is-inview .union-section__mandala--left,
+  html.motion-reveals .union-section.is-inview .union-section__mandala--right {
+    animation: none;
+  }
+
+  html.motion-reveals .union-section.is-inview .union-section__mandala--left {
+    transform: translateY(-50%);
+  }
+
+  html.motion-reveals .union-section.is-inview .union-section__mandala--right {
+    transform: translateY(-50%) scaleX(-1);
+  }
+
+  html.motion-reveals .parents-section.is-inview .parents-cards-row > .parents-card,
+  html.motion-reveals .parents-section.is-inview .parents-cards-row > .parents-cards-row__mid,
+  html.motion-reveals .when-section.is-inview .when-col:nth-child(1),
+  html.motion-reveals .when-section.is-inview .when-divider,
+  html.motion-reveals .when-section.is-inview .when-col:nth-child(3),
+  html.motion-reveals .when-section.is-inview .when-section__pill,
+  html.motion-reveals .countdown-section.is-inview .countdown-section__title,
+  html.motion-reveals .countdown-section.is-inview .countdown-section__pill,
+  html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(1),
+  html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(2),
+  html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(3),
+  html.motion-reveals .countdown-section.is-inview .countdown-box:nth-child(4),
+  html.motion-reveals .venue-section.is-inview .venue-section__copy > *,
+  html.motion-reveals .venue-section.is-inview .venue-map-frame,
+  html.motion-reveals .rsvp-section.is-inview .rsvp-eyebrow,
+  html.motion-reveals .rsvp-section.is-inview .rsvp-title,
+  html.motion-reveals .rsvp-section.is-inview .rsvp-rule,
+  html.motion-reveals .rsvp-section.is-inview .rsvp-copy,
+  html.motion-reveals .rsvp-section.is-inview .rsvp-phones__item:nth-child(1),
+  html.motion-reveals .rsvp-section.is-inview .rsvp-phones__item:nth-child(2),
+  html.motion-reveals .closing-section.is-inview .closing-pill,
+  html.motion-reveals .closing-section.is-inview .closing-names,
+  html.motion-reveals .closing-section.is-inview .closing-mandala,
+  html.motion-reveals .closing-section.is-inview .site-footer {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

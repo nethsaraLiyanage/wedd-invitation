@@ -35,29 +35,66 @@
               <span class="door-side-text" aria-hidden="true"
                 >SHASHEEKA &amp; NETHSARA</span
               >
-              <div class="corner corner--tl"></div>
-              <div class="corner corner--bl"></div>
+              <div class="corner corner--tl" aria-hidden="true">
+                <img
+                  class="corner__mandala"
+                  src="assets/mandala-transparent.png"
+                  alt=""
+                  width="280"
+                  height="280"
+                  decoding="async"
+                />
+              </div>
+              <div class="corner corner--bl" aria-hidden="true">
+                <img
+                  class="corner__mandala"
+                  src="assets/mandala-transparent.png"
+                  alt=""
+                  width="280"
+                  height="280"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
           <div class="card-door card-door--right">
             <div class="door-inner">
-              <div class="corner corner--tr"></div>
-              <div class="corner corner--br"></div>
+              <div class="corner corner--tr" aria-hidden="true">
+                <img
+                  class="corner__mandala"
+                  src="assets/mandala-transparent.png"
+                  alt=""
+                  width="280"
+                  height="280"
+                  decoding="async"
+                />
+              </div>
+              <div class="corner corner--br" aria-hidden="true">
+                <img
+                  class="corner__mandala"
+                  src="assets/mandala-transparent.png"
+                  alt=""
+                  width="280"
+                  height="280"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
 
-          <button
-            type="button"
-            class="seal"
-            id="sealBtn"
-            aria-expanded="false"
-            aria-controls="cardReveal"
-          >
-            <span class="seal-initials">S&amp;N</span>
-            <span class="seal-open">Open</span>
-          </button>
-
-          <p class="tap-hint">Tap seal to open</p>
+          <div class="card-stage__center">
+            <button
+              type="button"
+              class="seal"
+              id="sealBtn"
+              aria-expanded="false"
+              aria-controls="cardReveal"
+            >
+              <span class="seal-initials">S&amp;N</span>
+              <span class="seal-open">Open</span>
+            </button>
+            <p class="tap-hint">Tap seal to open</p>
+          </div>
         </div>
       </section>
 
@@ -107,7 +144,7 @@
         </div>
 
         <div class="invite-blue-drape" id="invite-details">
-        <section class="union-section" aria-labelledby="union-lead">
+        <section class="union-section reveal-on-scroll" aria-labelledby="union-lead">
           <div class="union-section__deco" aria-hidden="true">
             <img
               class="union-section__mandala union-section__mandala--left"
@@ -143,7 +180,7 @@
           </div>
         </section>
 
-        <section class="parents-section" aria-labelledby="parents-heading">
+        <section class="parents-section reveal-on-scroll" aria-labelledby="parents-heading">
           <h2 class="visually-hidden" id="parents-heading">Parents</h2>
           <div class="parents-section__inner">
             <div class="parents-cards-row">
@@ -173,7 +210,7 @@
           </div>
         </section>
 
-        <section class="when-section" aria-labelledby="when-heading">
+        <section class="when-section reveal-on-scroll" aria-labelledby="when-heading">
           <h2 class="visually-hidden" id="when-heading">Wedding date and time</h2>
           <div class="when-section__deco" aria-hidden="true">
             <img
@@ -244,7 +281,7 @@
         </section>
 
         <section
-          class="countdown-section"
+          class="countdown-section reveal-on-scroll"
           id="countdown"
           aria-labelledby="countdown-heading"
         >
@@ -289,7 +326,7 @@
           </div>
         </section>
 
-        <section class="venue-section" id="venue" aria-labelledby="venue-heading">
+        <section class="venue-section reveal-on-scroll" id="venue" aria-labelledby="venue-heading">
           <div class="venue-section__inner">
             <div class="venue-section__copy">
               <p class="venue-kicker">
@@ -368,7 +405,7 @@
           </div>
         </section>
 
-        <section class="rsvp-section" id="rsvp" aria-labelledby="rsvp-heading">
+        <section class="rsvp-section reveal-on-scroll" id="rsvp" aria-labelledby="rsvp-heading">
           <div class="rsvp-section__inner">
             <p class="rsvp-eyebrow">Will you join us?</p>
             <h2 class="rsvp-title" id="rsvp-heading">RSVP</h2>
@@ -379,7 +416,7 @@
             </div>
             <p class="rsvp-copy">
               We would be absolutely thrilled to celebrate with you. Kindly
-              respond by the end of August.
+              respond by the end of May 2026.
             </p>
             <!-- Replace href and displayed numbers with your real mobile numbers -->
             <ul class="rsvp-phones">
@@ -395,7 +432,7 @@
           </div>
         </section>
 
-        <section class="closing-section" aria-labelledby="closing-heading">
+        <section class="closing-section reveal-on-scroll" aria-labelledby="closing-heading">
           <div class="closing-section__watermark" aria-hidden="true">Thank You</div>
           <div class="closing-section__inner">
             <p class="closing-pill">With love</p>
