@@ -2078,7 +2078,7 @@ body.show-invite-page .invitation-page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4.45rem;
+  gap: 0;
   pointer-events: none;
 }
 
@@ -2171,12 +2171,16 @@ body.show-invite-page .invitation-page {
 }
 
 .tap-hint {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.85rem, 2.8vh, 1.35rem);
   z-index: 1;
-  margin: 0.6rem 0 0;
+  margin: 0;
   display: inline-block;
   width: max-content;
   max-width: calc(100% - 1.5rem);
+  margin-inline: auto;
   text-align: center;
   padding: 0.5rem 0.95rem;
   font-size: 0.58rem;
@@ -2678,7 +2682,57 @@ html.motion-reveals .closing-section.is-inview .site-footer {
   animation-delay: 0.48s;
 }
 
+/* —— Wedding snow overlay —— */
+.wedding-snow {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+body.show-invite-page .wedding-snow {
+  opacity: 1;
+}
+
+.wedding-snow__flake {
+  position: absolute;
+  top: -12%;
+  left: var(--x, 50%);
+  font-size: var(--size, 1rem);
+  color: rgba(28, 58, 104, var(--alpha, 0.52));
+  text-shadow:
+    0 0 10px rgba(46, 88, 156, 0.34),
+    0 0 22px rgba(90, 133, 201, 0.26);
+  filter: drop-shadow(0 3px 10px rgba(11, 21, 40, 0.2));
+  animation: anim-wedding-snow-fall var(--dur, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes anim-wedding-snow-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(calc(var(--drift, 0px) * 0.7), 48vh, 0) rotate(130deg);
+  }
+  100% {
+    transform: translate3d(var(--drift, 0px), 112vh, 0) rotate(260deg);
+    opacity: 0.1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .wedding-snow {
+    display: none;
+  }
+
   .card-wrap {
     transition: none;
   }

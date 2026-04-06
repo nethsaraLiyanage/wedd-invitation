@@ -8,6 +8,7 @@
   const inviteCloseBtn = document.getElementById("inviteCloseBtn");
   const scrollContinueBtn = document.getElementById("scrollContinueBtn");
   const inviteDetails = document.getElementById("invite-details");
+  const weddingSnowOverlay = document.getElementById("weddingSnowOverlay");
 
   function setupScrollReveals() {
     const sections = document.querySelectorAll(".reveal-on-scroll");
@@ -57,6 +58,29 @@
 
   let revealObserver = setupScrollReveals();
 
+  function setupWeddingSnow() {
+    if (!weddingSnowOverlay) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const amount = window.matchMedia("(max-width: 680px)").matches ? 18 : 28;
+    const symbols = ["\u273f", "\u273e", "\u25cf"];
+
+    for (let i = 0; i < amount; i += 1) {
+      const flake = document.createElement("span");
+      flake.className = "wedding-snow__flake";
+      flake.textContent = symbols[i % symbols.length];
+
+      flake.style.setProperty("--x", (Math.random() * 100).toFixed(2) + "%");
+      flake.style.setProperty("--size", (0.68 + Math.random() * 0.78).toFixed(2) + "rem");
+      flake.style.setProperty("--dur", (8 + Math.random() * 9).toFixed(2) + "s");
+      flake.style.setProperty("--delay", (-Math.random() * 12).toFixed(2) + "s");
+      flake.style.setProperty("--drift", (-24 + Math.random() * 48).toFixed(2) + "px");
+      flake.style.setProperty("--alpha", (0.24 + Math.random() * 0.46).toFixed(2));
+
+      weddingSnowOverlay.appendChild(flake);
+    }
+  }
+
   function refreshRevealSections() {
     document.querySelectorAll(".reveal-on-scroll:not(.is-inview)").forEach(function (el) {
       const r = el.getBoundingClientRect();
@@ -69,6 +93,7 @@
   }
 
   if (!stage || !seal) return;
+  setupWeddingSnow();
 
   function openCard() {
     stage.classList.add("is-open");
