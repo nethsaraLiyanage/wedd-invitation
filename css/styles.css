@@ -54,6 +54,18 @@ body {
   color: var(--ink);
 }
 
+/* Landing only: keep hero + card viewport-fixed (no page scroll) */
+html:has(body:not(.show-invite-page)) {
+  overflow: hidden;
+  height: 100dvh;
+}
+
+body:not(.show-invite-page) {
+  overflow: hidden;
+  height: 100dvh;
+  max-height: 100dvh;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -87,8 +99,18 @@ body.show-invite-page .foot {
   display: none;
 }
 
+html:has(body.show-invite-page) {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: 100dvh;
+}
+
 body.show-invite-page {
   overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  max-height: none;
   background-color: #faf8f4;
   background-image:
     radial-gradient(circle at 18% 10%, rgba(45, 58, 82, 0.05), transparent 36%),
@@ -469,7 +491,7 @@ body.show-invite-page .invitation-page {
 }
 
 .invite-top-mark {
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 1.2rem;
   display: flex;
   justify-content: center;
 }
@@ -484,7 +506,7 @@ body.show-invite-page .invitation-page {
 }
 
 .invite-eyebrow {
-  margin: 0;
+  margin: 0 0 0.85rem;
   font-size: 0.68rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -492,7 +514,7 @@ body.show-invite-page .invitation-page {
 }
 
 .invite-names {
-  margin: clamp(1rem, 3dvh, 1.85rem) 0 clamp(0.65rem, 2dvh, 1.1rem);
+  margin: 0 0 clamp(0.65rem, 2dvh, 1.1rem);
   font-family: var(--font-serif);
   font-size: clamp(2.25rem, 5.5vw + 2.8dvh, 4rem);
   line-height: 1.08;
